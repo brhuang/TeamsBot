@@ -37,7 +37,7 @@ var bot = new builder.UniversalBot(connector, [
     function (session, results) {
         session.userData.language = results.response.entity;
         session.send("Got it... " + session.userData.name + 
-                     " you've been programming for " + session.userData.coding + 
-                     " years and use " + session.userData.language + ".");
+                     "you've been programming for " + session.userData.coding + 
+                     "years and use " + session.userData.language + ".");
     }
 ]);
