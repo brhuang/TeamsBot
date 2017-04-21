@@ -1,0 +1,17 @@
+{
+  "$schema": "https://statics.teams.microsoft.com/sdk/v0.4/manifest/MicrosoftTeams.schema.json",
+  "manifestVersion": "0.4",
+  "id": "f037f578-18d3-4b5e-9ef9-4efda35de174",
+  "version": "1.0",
+  "developer": {
+    "name": "Brian",
+    "websiteUrl": "https://de5092da.ngrok.io/",
+    "privacyUrl": "https://de5092da.ngrok.io/privacy",
+    "termsOfUseUrl": "https://de5092da.ngrok.io/app-tos"
+  },
+  "bots": [{
+      "mri": "f037f578-18d3-4b5e-9ef9-4efda35de174",
+      "websiteUrl": "https://de5092da.ngrok.io/app/messages"
+    }],
+  "needsIdentity": true
+}
