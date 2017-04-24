@@ -1,0 +1,8 @@
+POST /issues.xml
+<?xml version="1.0"?>
+<issue>
+  <project_id>7</project_id>
+  <subject>this is the 6th bug.</subject>
+  <description> test authentication</description>
+  <priority_id>5</priority_id>
+</issue>
