@@ -1,5 +1,6 @@
 var restify = require('restify');
 var builder = require('botbuilder');
+var exec = require('child_process').exec;
 
 //=========================================================
 // Bot Setup v1.0
@@ -40,4 +41,11 @@ var bot = new builder.UniversalBot(connector, [
                      "you've been programming for " + session.userData.coding + 
                      "years and use " + session.userData.language + ".");
     }
+    var cmd = 'curl -v -H "Content-Type: application/xml" -X POST --data-binary "@issues.xml" -u "eitc:secret"  https://b72c4b06.ngrok.io/issues.xml?key=678fb5bd075ebee0a4636b74857cb6b0ece71cf3';
+    exec(cmd, function(error, stdout, stderr) {
+  // command output is in stdout
+    console.log("error : " + error);
+    console.log("stdout : " + stdout);
+    console.log("stderr : " + stderr);
+});
 ]);
