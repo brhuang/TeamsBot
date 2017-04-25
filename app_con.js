@@ -66,6 +66,7 @@ var bot = new builder.UniversalBot(connector, [
         session.userData.priority = results.response;
         
         var sedcmd = 'sed -i "s/this is the 10th bug for Alfred./\\' + session.userData.subject + '/g" /app/issues.xml';
+        session.send("sdecmd = " + sedcmd);
         exec(sedcmd, function(error, stdout, stderr) {
             // command output is in stdout
             console.log("error : " + error);
