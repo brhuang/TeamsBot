@@ -54,7 +54,7 @@ var bot = new builder.UniversalBot(connector, [
     function (session, results) {
         session.userData.subject = results.response;
         var subleng = session.userData.subject.length;
-        var session.userData.subject = session.userData.subject.substring(17,subleng);
+        session.userData.subject = session.userData.subject.substring(17,subleng);
         session.send(session.userData.subject);
         session.send("Subject = " + IssueSubject);
         builder.Prompts.text(session, "Please provide the description");   
