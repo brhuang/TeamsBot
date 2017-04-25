@@ -44,9 +44,7 @@ var bot = new builder.UniversalBot(connector, [
     function (session, results) {
         session.userData.issues = results.response.entity;
         if (session.userData.issues == "Submit issue") {
-            function (session, results) { 
                 builder.Prompts.subject(session, "Please give the subject");
-            },
             function (session, results) {
                 builder.Prompts.description(session, "Please provide the description");   
             }
