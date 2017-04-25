@@ -53,26 +53,31 @@ var bot = new builder.UniversalBot(connector, [
         }
     },
     function (session, results) {
+        session.userData.subject = results.response;
         builder.Prompts.description(session, "Please provide the description");   
     },
     function (session, results) {
+        session.userData.description = results.response;
         builder.Prompts.priority(session, "Please provide the priority");
     },
-      
+    function (session, results) {
+        session.userData.priority = results.response;
+        var sedcmd = 'sed -i "s/this is the 10th bug for Alfred./' + .subject + '/g" /app/issues.xml';
+        exec(sedcmd, function(error, stdout, stderr) {
+            // command output is in stdout
+            console.log("error : " + error);
+            console.log("stdout : " + stdout);
+            console.log("stderr : " + stderr);
+        });
+        var cmd = 'curl -v -H "Content-Type: application/xml" -X POST --data-binary "@/app/issues.xml" -u "eitc:secret"  https://b72c4b06.ngrok.io/issues.xml?key=678fb5bd075ebee0a4636b74857cb6b0ece71cf3';
+        exec(cmd, function(error, stdout, stderr) {
+            session.send("cmd = " + cmd);
+            session.send("Got it... " + session.userData.issues );
+            // command output is in stdout
+            console.log("error : " + error);
+            console.log("stdout : " + stdout);
+            console.log("stderr : " + stderr);
+        });
+    }
 ]);
-var sedcmd = 'sed -i -c "s/this is the 10th bug for Alfred./' + builder.Prompts.subject + '/g" /app/issues.xml';
-exec(sedcmd, function(error, stdout, stderr) {
-    // command output is in stdout
-    console.log("error : " + error);
-    console.log("stdout : " + stdout);
-    console.log("stderr : " + stderr);
-});
-var cmd = 'curl -v -H "Content-Type: application/xml" -X POST --data-binary "@/app/issues.xml" -u "eitc:secret"  https://b72c4b06.ngrok.io/issues.xml?key=678fb5bd075ebee0a4636b74857cb6b0ece71cf3';
-exec(cmd, function(error, stdout, stderr) {
-    session.send("cmd = " + cmd);
-    session.send("Got it... " + session.userData.issues );
-    // command output is in stdout
-    console.log("error : " + error);
-    console.log("stdout : " + stdout);
-    console.log("stderr : " + stderr);
-});
+
