@@ -66,9 +66,14 @@ var bot = new builder.UniversalBot(connector, [
     function (session, results) {
         session.userData.priority = results.response;
         
-        var newFile = fs.createWriteStream('/app/tmp/issues.xml');     
-        var oldFile = fs.createReadStream('/app/issues.xml');
-        oldFile.pipe(newFile);
+        var cpcmd = 'cp /app/issues.xml /app/tmp/issues.xml';
+        session.send("cpcmd = " + cpcmd);
+        exec(cpcmd, function(error, stdout, stderr) {
+            // command output is in stdout
+            console.log("error : " + error);
+            console.log("stdout : " + stdout);
+            console.log("stderr : " + stderr);
+        });
         
         var sedcmd = 'sed -i "s/this is the 10th bug for Alfred./' + session.userData.subject + '/g" /app/tmp/issues.xml';
         session.send("sdecmd = " + sedcmd);
