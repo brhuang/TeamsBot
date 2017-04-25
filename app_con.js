@@ -43,12 +43,13 @@ var bot = new builder.UniversalBot(connector, [
 //    },
     function (session, results) {
         session.userData.issues = results.response.entity;
-        if (session.userData.issues == "Just say hello") {
-            session.send("Hello...");
-            return
+        if (session.userData.issues == "Submit issue") {
+            builder.Prompts.subject(session, "Please give the subject");
+            
         }
         esle {
-            builder.Prompts.subject(session, "Please give the subject");
+            session.send("Hello...");
+            return
         }
     },
     function (session, results) {
