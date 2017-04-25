@@ -53,7 +53,10 @@ var bot = new builder.UniversalBot(connector, [
     },
     function (session, results) {
         session.userData.subject = results.response;
+        var subleng = session.userData.subject.length;
+        var IssueSubject = session.userData.subject.substring(17,subleng);
         session.send(session.userData.subject);
+        session.send("Subject = " + IssueSubject);
         builder.Prompts.text(session, "Please provide the description");   
     },
     function (session, results) {
@@ -62,7 +65,8 @@ var bot = new builder.UniversalBot(connector, [
     },
     function (session, results) {
         session.userData.priority = results.response;
-        var sedcmd = 'sed -i "s/this is the 10th bug for Alfred./\\' + session.userData.subject + '/g" /app/issues.xml';
+        
+        var sedcmd = 'sed -i "s/this is the 10th bug for Alfred./\\' + IssueSubject + '/g" /app/issues.xml';
         exec(sedcmd, function(error, stdout, stderr) {
             // command output is in stdout
             console.log("error : " + error);
