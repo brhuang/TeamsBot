@@ -47,7 +47,7 @@ var bot = new builder.UniversalBot(connector, [
             builder.Prompts.subject(session, "Please give the subject");
             
         }
-        esle {
+        else {
             session.send("Hello...");
             return
         }
