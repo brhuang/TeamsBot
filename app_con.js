@@ -64,13 +64,11 @@ var bot = new builder.UniversalBot(connector, [
     //},
     function (session, results) {
         session.userData.priority = results.response;
-        var mvcmd = 'mv /app/issues.xml /app/tmp/issues.xml';
-        exec(mvcmd, function(error, stdout, stderr) {
-            // command output is in stdout
-            console.log("error : " + error);
-            console.log("stdout : " + stdout);
-            console.log("stderr : " + stderr);
-        });
+        
+        var newFile = fs.createWriteStream('/app/tmp/issues.xml');     
+        var oldFile = fs.createReadStream('/app/issues.xml');
+        oldFile.pipe(newFile);
+        
         var sedcmd = 'sed -i "s/this is the 10th bug for Alfred./' + session.userData.subject + '/g" /app/tmp/issues.xml';
         session.send("sdecmd = " + sedcmd);
         exec(sedcmd, function(error, stdout, stderr) {
@@ -79,6 +77,7 @@ var bot = new builder.UniversalBot(connector, [
             console.log("stdout : " + stdout);
             console.log("stderr : " + stderr);
         });
+        
         var cmd = 'curl -v -H "Content-Type: application/xml" -X POST --data-binary "@/app/tmp/issues.xml" -u "eitc:secret"  https://b72c4b06.ngrok.io/issues.xml?key=678fb5bd075ebee0a4636b74857cb6b0ece71cf3';
         exec(cmd, function(error, stdout, stderr) {
             session.send("cmd = " + cmd);
