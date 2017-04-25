@@ -1,7 +1,7 @@
 var restify = require('restify');
 var builder = require('botbuilder');
 var exec = require('child_process').exec;
-var fs = = require('fs');
+var fs = require('fs');
 
 //=========================================================
 // Bot Setup v1.0
