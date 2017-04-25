@@ -53,6 +53,7 @@ var bot = new builder.UniversalBot(connector, [
     },
     function (session, results) {
         session.userData.subject = results.response;
+        session.send(session.userData.subject);
         builder.Prompts.text(session, "Please provide the description");   
     },
     function (session, results) {
