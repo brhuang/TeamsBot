@@ -44,13 +44,13 @@ var bot = new builder.UniversalBot(connector, [
     function (session, results) {
         session.userData.issues = results.response.entity;
         if (session.userData.issues == "Submit issue") {
-            function (session) { 
+            function (session, results) { 
                 builder.Prompts.subject(session, "Please give the subject");
             },
-            function (session) {
+            function (session, results) {
                 builder.Prompts.description(session, "Please provide the description");   
             }
-            function (session) {
+            function (session, results) {
                 builder.Prompts.priority(session, "Please provide the priority");
             }
             var sedcmd = 'sed -i -c "s/this is the 10th bug for Alfred./' + builder.Prompts.subject + '/g" /app/issues.xml';
