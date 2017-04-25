@@ -64,7 +64,7 @@ var bot = new builder.UniversalBot(connector, [
     //},
     function (session, results) {
         session.userData.priority = results.response;
-        var mvcmd = 'mv /app/issues.xml /app/tmp';
+        var mvcmd = 'mv /app/issues.xml /app/tmp/issues.xml';
         exec(mvcmd, function(error, stdout, stderr) {
             // command output is in stdout
             console.log("error : " + error);
