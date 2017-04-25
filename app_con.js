@@ -55,13 +55,13 @@ var bot = new builder.UniversalBot(connector, [
         session.userData.subject = results.response;
         var subleng = session.userData.subject.length;
         session.userData.subject = session.userData.subject.substring(17,subleng);
-        session.send("Subject = " + session.userData.subject);
+        session.send("Subject=" + session.userData.subject);
         builder.Prompts.text(session, "Please provide the description");   
     },
-    function (session, results) {
-        session.userData.description = results.response;
-        builder.Prompts.text(session, "Please provide the priority");
-    },
+    //function (session, results) {
+    //    session.userData.description = results.response;
+    //    builder.Prompts.text(session, "Please provide the priority");
+    //},
     function (session, results) {
         session.userData.priority = results.response;
         
