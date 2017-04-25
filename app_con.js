@@ -44,6 +44,15 @@ var bot = new builder.UniversalBot(connector, [
     function (session, results) {
         session.userData.issues = results.response.entity;
         if (session.userData.issues == "Submit issue") {
+            function (session) { 
+                builder.Prompts.subject(session, "Please give the subject");
+            },
+            function (session) {
+                builder.Prompts.description(session, "Please provide the description");   
+            }
+            function (session) {
+                builder.Prompts.priority(session, "Please provide the priority");
+            }
             var cmd = 'curl -v -H "Content-Type: application/xml" -X POST --data-binary "@/app/issues.xml" -u "eitc:secret"  https://b72c4b06.ngrok.io/issues.xml?key=678fb5bd075ebee0a4636b74857cb6b0ece71cf3';
             exec(cmd, function(error, stdout, stderr) {
                 session.send("cmd = " + cmd);
