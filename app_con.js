@@ -44,7 +44,7 @@ var bot = new builder.UniversalBot(connector, [
     function (session, results) {
         session.userData.issues = results.response.entity;
         if (session.userData.issues == "Submit issue") {
-             builder.Prompts.subject(session, "Please give the subject");
+             builder.Prompts.text(session, "Please give the subject");
         }
         else {
             session.send("Hello...");
@@ -53,11 +53,11 @@ var bot = new builder.UniversalBot(connector, [
     },
     function (session, results) {
         session.userData.subject = results.response;
-        builder.Prompts.description(session, "Please provide the description");   
+        builder.Prompts.text(session, "Please provide the description");   
     },
     function (session, results) {
         session.userData.description = results.response;
-        builder.Prompts.priority(session, "Please provide the priority");
+        builder.Prompts.text(session, "Please provide the priority");
     },
     function (session, results) {
         session.userData.priority = results.response;
