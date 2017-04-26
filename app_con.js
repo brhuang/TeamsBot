@@ -66,8 +66,9 @@ var bot = new builder.UniversalBot(connector, [
     function (session, results) {
         session.userData.priority = results.response;
         
-        /* var cpcmd = 'cp /app/issues.xml /app/tmp/issues.xml';
-        session.send("cpcmd = " + cpcmd);
+        var cpcmd = 'cp /app/issues.xml /app/tmp/issues.xml';
+        ExecCmd(cpcmd);
+        /*session.send("cpcmd = " + cpcmd);
         exec(cpcmd, function(error, stdout, stderr) {
             // command output is in stdout
             console.log("error : " + error);
@@ -95,4 +96,15 @@ var bot = new builder.UniversalBot(connector, [
         }); */
     }
 ]);
+
+function ExecCmd(cmd) {
+    exec(cmd, function(error, stdout, stderr) {
+        session.send("cmd = " + cmd);
+        //session.send("Got it... " + session.userData.issues );
+        // command output is in stdout
+        console.log("error : " + error);
+        console.log("stdout : " + stdout);
+        console.log("stderr : " + stderr);
+    });
+}
 
