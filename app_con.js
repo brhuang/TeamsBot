@@ -3,21 +3,17 @@ var builder = require('botbuilder');
 var exec = require('child_process').exec;
 var fs = require('fs');
 
-var RedmineOut = "";
 
 function ExecCmd(cmd, session) {
-    exec(cmd, function(error, stdout, stderr) {
+    var Ret = exec(cmd, function(error, stdout, stderr) {
         //session.send("cmd = " + cmd);
-        RedmineOut = stdout;
-        console.log("RedmineOut : " + RedmineOut);
-        session.send("stdout = " + RedmineOut);
         //session.send("Got it... " + session.userData.issues );
         // command output is in stdout
         console.log("error : " + error);
         console.log("stdout : " + stdout);
         console.log("stderr : " + stderr);
     });
-    console.log("testout : " + RedmineOut);
+    session.send("Return = " + Ret);
 }
 
 //=========================================================
@@ -115,7 +111,7 @@ var bot = new builder.UniversalBot(connector, [
         ExecCmd(sedcmd, session);
         
         var submitcmd = 'curl -v -H "Content-Type: application/xml" -X POST --data-binary "@/app/tmp/issues.xml" -u "eitc:secret"  https://b72c4b06.ngrok.io/issues.xml?key=678fb5bd075ebee0a4636b74857cb6b0ece71cf3';
-        ExecCmd(submitcmd, session);
+        //ExecCmd(submitcmd, session);
         /*exec(cmd, function(error, stdout, stderr) {
             session.send("cmd = " + cmd);
             session.send("Got it... " + session.userData.issues );
@@ -123,8 +119,7 @@ var bot = new builder.UniversalBot(connector, [
             console.log("error : " + error);
             console.log("stdout : " + stdout);
             console.log("stderr : " + stderr);
-        }); */
-        session.send("Redmine output = " + RedmineOut);
+        }); */ 
     }
 ]);
 
