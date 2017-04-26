@@ -7,7 +7,7 @@ var RedmineOut = "";
 
 function ExecCmd(cmd, session) {
     exec(cmd, function(error, stdout, stderr) {
-        session.send("cmd = " + cmd);
+        //session.send("cmd = " + cmd);
         RedmineOut = stdout;
         console.log("RedmineOut : " + RedmineOut);
         session.send("stdout = " + RedmineOut);
@@ -16,7 +16,8 @@ function ExecCmd(cmd, session) {
         console.log("error : " + error);
         console.log("stdout : " + stdout);
         console.log("stderr : " + stderr);
-    });   
+    });
+    console.log("testout : " + RedmineOut);
 }
 
 //=========================================================
