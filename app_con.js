@@ -131,7 +131,7 @@ var bot = new builder.UniversalBot(connector, [
 
         // Do something after the sleep!
         var re = /<id>(.*?)<\/id>/g;  
-        session.send("id = " + session.userData.RedmineOut.match(re));
+        session.send("Case link = https://b72c4b06.ngrok.io/issues/" + session.userData.RedmineOut.match(re));
         //session.send("Redmine output : " + session.userData.RedmineOut.substring(0,100));
         console.log("printout : " + session.userData.RedmineOut);
         });    
