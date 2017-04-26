@@ -79,7 +79,7 @@ var bot = new builder.UniversalBot(connector, [
         }); */
         
         var sedcmd = 'sed -i "s/this is the 10th bug for Alfred./' + session.userData.subject + '/g" /app/tmp/issues.xml';
-        session.send("sdecmd = " + sedcmd);
+        session.send("sedcmd = " + sedcmd);
         ExecCmd(sedcmd, session);
         /* exec(sedcmd, function(error, stdout, stderr) {
             // command output is in stdout
@@ -88,12 +88,12 @@ var bot = new builder.UniversalBot(connector, [
             console.log("stderr : " + stderr);
         }); */
         
-        sedcmd = 'sed -i "s/demo/' + session.userData.description + '/g" /app/tmp/issues.xml';
-        session.send("sdecmd = " + sedcmd);
+        sedcmd = 'sed -i "s/Demo/' + session.userData.description + '/g" /app/tmp/issues.xml';
+        session.send("sedcmd = " + sedcmd);
         ExecCmd(sedcmd, session);
         
-        sedcmd = 'sed -i "s/priority_id>5/priority_id>' + session.userData.priority + '/g" /app/tmp/issues.xml';
-        session.send("sdecmd = " + sedcmd);
+        sedcmd = 'sed -i "s/priority_id\>5/priority_id\>' + session.userData.priority + '/g" /app/tmp/issues.xml';
+        session.send("sedcmd = " + sedcmd);
         ExecCmd(sedcmd, session);
         
         var submitcmd = 'curl -v -H "Content-Type: application/xml" -X POST --data-binary "@/app/tmp/issues.xml" -u "eitc:secret"  https://b72c4b06.ngrok.io/issues.xml?key=678fb5bd075ebee0a4636b74857cb6b0ece71cf3';
