@@ -130,7 +130,7 @@ var bot = new builder.UniversalBot(connector, [
         sleep(1000).then(() => {
 
         // Do something after the sleep!
-        session.send("Redmine output : " + session.userData.RedmineOut.substring(10,5));
+        session.send("Redmine output : " + session.userData.RedmineOut.substring(20,10));
         console.log("printout : " + session.userData.RedmineOut);
         });    
     }
