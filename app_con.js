@@ -107,7 +107,7 @@ var bot = new builder.UniversalBot(connector, [
             console.log("stdout : " + stdout);
             console.log("stderr : " + stderr);
         }); */
-        session.send("Redmine output = " + RedmineOut);
+        //session.send("Redmine output = " + RedmineOut);
     }
 ]);
 
@@ -117,6 +117,7 @@ function ExecCmd(cmd, session) {
     exec(cmd, function(error, stdout, stderr) {
         session.send("cmd = " + cmd);
         var RedmineOut = stdout;
+        console.log("RedmineOut : " + RedmineOut);
         session.send("stdout = " + RedmineOut);
         //session.send("Got it... " + session.userData.issues );
         // command output is in stdout
