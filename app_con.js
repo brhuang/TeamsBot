@@ -59,12 +59,14 @@ var bot = new builder.UniversalBot(connector, [
         //session.send("Subject = " + session.userData.subject);
         builder.Prompts.text(session, "Please provide the description");   
     },
-    //function (session, results) {
-    //    session.userData.description = results.response;
-    //    builder.Prompts.text(session, "Please provide the priority");
-    //},
     function (session, results) {
-        session.userData.priority = results.response;
+        session.userData.description = results.response;
+        var desleng = session.userData.description.length;
+        session.userData.description = session.userData.description.substring(18,subleng);
+        builder.Prompts.choice(session, "Please provide the priority", ["1","2","3","4","5"]);
+    },
+    function (session, results) {
+        session.userData.priority = results.response.entity;
         
         var cpcmd = 'cp /app/issues.xml /app/tmp/issues.xml';
         ExecCmd(cpcmd, session);
@@ -85,6 +87,14 @@ var bot = new builder.UniversalBot(connector, [
             console.log("stdout : " + stdout);
             console.log("stderr : " + stderr);
         }); */
+        
+        sedcmd = 'sed -i "s/demo/' + session.userData.description + '/g" /app/tmp/issues.xml';
+        session.send("sdecmd = " + sedcmd);
+        ExecCmd(sedcmd, session);
+        
+        sedcmd = 'sed -i "s/priority_id>5/priority_id>' + session.userData.priority + '/g" /app/tmp/issues.xml';
+        session.send("sdecmd = " + sedcmd);
+        ExecCmd(sedcmd, session);
         
         var submitcmd = 'curl -v -H "Content-Type: application/xml" -X POST --data-binary "@/app/tmp/issues.xml" -u "eitc:secret"  https://b72c4b06.ngrok.io/issues.xml?key=678fb5bd075ebee0a4636b74857cb6b0ece71cf3';
         ExecCmd(submitcmd, session);
