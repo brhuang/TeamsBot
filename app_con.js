@@ -120,7 +120,7 @@ var bot = new builder.UniversalBot(connector, [
             console.log("stdout : " + stdout);
             console.log("stderr : " + stderr);
         });
-        session.send("Redmine output : " + Redmine);
+        session.send("Redmine output : " + RedmineOut);
     }
 ]);
 
