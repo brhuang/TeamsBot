@@ -16,8 +16,8 @@ function ExecCmd(cmd, session) {
         console.log("error : " + error);
         console.log("stdout : " + stdout);
         console.log("stderr : " + stderr);
-    });
-    
+    });   
+}
 
 //=========================================================
 // Bot Setup v1.0
@@ -127,8 +127,4 @@ var bot = new builder.UniversalBot(connector, [
     }
 ]);
 
-
-
-
-}
 
