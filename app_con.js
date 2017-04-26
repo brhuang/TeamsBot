@@ -2,7 +2,7 @@ var restify = require('restify');
 var builder = require('botbuilder');
 var exec = require('child_process').exec;
 var fs = require('fs');
-var RedmineOut;
+var RedmineOut = '';
 
 function ExecCmd(cmd, session) {
     exec(cmd, function(error, stdout, stderr) {
@@ -115,7 +115,7 @@ var bot = new builder.UniversalBot(connector, [
             //session.send("cmd = " + cmd);
             //session.send("Got it... " + session.userData.issues );
             // command output is in stdout
-            RedmineOut = stdout ;
+            RedmineOut = RedmineOut + stdout ;
             console.log("error : " + error);
             console.log("stdout : " + stdout);
             console.log("stderr : " + stderr);
