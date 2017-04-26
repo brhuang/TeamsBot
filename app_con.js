@@ -56,7 +56,7 @@ var bot = new builder.UniversalBot(connector, [
         session.userData.subject = results.response;
         var subleng = session.userData.subject.length;
         session.userData.subject = session.userData.subject.substring(18,subleng);
-        session.send("Subject = <at>黃博彥</at> " + session.userData.subject);
+        //session.send("Subject = " + session.userData.subject);
         builder.Prompts.text(session, "Please provide the description");   
     },
     //function (session, results) {
