@@ -3,6 +3,22 @@ var builder = require('botbuilder');
 var exec = require('child_process').exec;
 var fs = require('fs');
 
+var RedmineOut = "";
+
+function ExecCmd(cmd, session) {
+    exec(cmd, function(error, stdout, stderr) {
+        session.send("cmd = " + cmd);
+        RedmineOut = stdout;
+        console.log("RedmineOut : " + RedmineOut);
+        session.send("stdout = " + RedmineOut);
+        //session.send("Got it... " + session.userData.issues );
+        // command output is in stdout
+        console.log("error : " + error);
+        console.log("stdout : " + stdout);
+        console.log("stderr : " + stderr);
+    });
+    
+
 //=========================================================
 // Bot Setup v1.0
 //=========================================================
@@ -24,7 +40,7 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 // Bots Dialogs
 //=========================================================
-var RedmineOut;
+
 var bot = new builder.UniversalBot(connector, [
     function (session) {
         builder.Prompts.choice(session, "Hello... Any problem?", ["Submit issue", "Just say hello"]);
@@ -113,18 +129,6 @@ var bot = new builder.UniversalBot(connector, [
 
 
 
-function ExecCmd(cmd, session) {
-    exec(cmd, function(error, stdout, stderr) {
-        session.send("cmd = " + cmd);
-        RedmineOut = stdout;
-        console.log("RedmineOut : " + RedmineOut);
-        session.send("stdout = " + RedmineOut);
-        //session.send("Got it... " + session.userData.issues );
-        // command output is in stdout
-        console.log("error : " + error);
-        console.log("stdout : " + stdout);
-        console.log("stderr : " + stderr);
-    });
-    
+
 }
 
