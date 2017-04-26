@@ -92,7 +92,7 @@ var bot = new builder.UniversalBot(connector, [
         session.send("sedcmd = " + sedcmd);
         ExecCmd(sedcmd, session);
         
-        sedcmd = 'sed -i "s/priority_id\>5/priority_id\>' + session.userData.priority + '/g" /app/tmp/issues.xml';
+        sedcmd = 'sed -i "s/Pri_Setting/' + session.userData.priority + '/g" /app/tmp/issues.xml';
         session.send("sedcmd = " + sedcmd);
         ExecCmd(sedcmd, session);
         
