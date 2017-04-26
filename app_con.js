@@ -62,7 +62,7 @@ var bot = new builder.UniversalBot(connector, [
     function (session, results) {
         session.userData.description = results.response;
         var desleng = session.userData.description.length;
-        session.userData.description = session.userData.description.substring(18,subleng);
+        session.userData.description = session.userData.description.substring(18,desleng);
         builder.Prompts.choice(session, "Please provide the priority", ["1","2","3","4","5"]);
     },
     function (session, results) {
