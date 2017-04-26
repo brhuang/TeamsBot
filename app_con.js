@@ -66,33 +66,33 @@ var bot = new builder.UniversalBot(connector, [
     function (session, results) {
         session.userData.priority = results.response;
         
-        //var cpcmd = 'cp /app/issues.xml /app/tmp/issues.xml';
-        //session.send("cpcmd = " + cpcmd);
-        //exec(cpcmd, function(error, stdout, stderr) {
-        //    // command output is in stdout
-        //    console.log("error : " + error);
-        //    console.log("stdout : " + stdout);
-        //    console.log("stderr : " + stderr);
-        //});
+        /* var cpcmd = 'cp /app/issues.xml /app/tmp/issues.xml';
+        session.send("cpcmd = " + cpcmd);
+        exec(cpcmd, function(error, stdout, stderr) {
+            // command output is in stdout
+            console.log("error : " + error);
+            console.log("stdout : " + stdout);
+            console.log("stderr : " + stderr);
+        });
         
-        //var sedcmd = 'sed -i "s/this is the 10th bug for Alfred./' + session.userData.subject + '/g" /app/tmp/issues.xml';
-        //session.send("sdecmd = " + sedcmd);
-        //exec(sedcmd, function(error, stdout, stderr) {
-        //    // command output is in stdout
-        //    console.log("error : " + error);
-        //    console.log("stdout : " + stdout);
-        //    console.log("stderr : " + stderr);
-        //});
+        var sedcmd = 'sed -i "s/this is the 10th bug for Alfred./' + session.userData.subject + '/g" /app/tmp/issues.xml';
+        session.send("sdecmd = " + sedcmd);
+        exec(sedcmd, function(error, stdout, stderr) {
+            // command output is in stdout
+            console.log("error : " + error);
+            console.log("stdout : " + stdout);
+            console.log("stderr : " + stderr);
+        });
         
-        //var cmd = 'curl -v -H "Content-Type: application/xml" -X POST --data-binary "@/app/tmp/issues.xml" -u "eitc:secret"  https://b72c4b06.ngrok.io/issues.xml?key=678fb5bd075ebee0a4636b74857cb6b0ece71cf3';
-        //exec(cmd, function(error, stdout, stderr) {
-        //    session.send("cmd = " + cmd);
-        //    session.send("Got it... " + session.userData.issues );
-        //    // command output is in stdout
-        //    console.log("error : " + error);
-        //    console.log("stdout : " + stdout);
-        //    console.log("stderr : " + stderr);
-        //});
+        var cmd = 'curl -v -H "Content-Type: application/xml" -X POST --data-binary "@/app/tmp/issues.xml" -u "eitc:secret"  https://b72c4b06.ngrok.io/issues.xml?key=678fb5bd075ebee0a4636b74857cb6b0ece71cf3';
+        exec(cmd, function(error, stdout, stderr) {
+            session.send("cmd = " + cmd);
+            session.send("Got it... " + session.userData.issues );
+            // command output is in stdout
+            console.log("error : " + error);
+            console.log("stdout : " + stdout);
+            console.log("stderr : " + stderr);
+        }); */
     }
 ]);
 
