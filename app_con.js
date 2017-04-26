@@ -67,7 +67,7 @@ var bot = new builder.UniversalBot(connector, [
         session.userData.priority = results.response;
         
         var cpcmd = 'cp /app/issues.xml /app/tmp/issues.xml';
-        ExecCmd(cpcmd);
+        ExecCmd(cpcmd, session);
         /*session.send("cpcmd = " + cpcmd);
         exec(cpcmd, function(error, stdout, stderr) {
             // command output is in stdout
@@ -97,7 +97,7 @@ var bot = new builder.UniversalBot(connector, [
     }
 ]);
 
-function ExecCmd(cmd) {
+function ExecCmd(cmd, session) {
     exec(cmd, function(error, stdout, stderr) {
         session.send("cmd = " + cmd);
         //session.send("Got it... " + session.userData.issues );
