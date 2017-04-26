@@ -4,5 +4,5 @@ POST /issues.xml
   <project_id>7</project_id>
   <subject>this is the 10th bug for Alfred.</subject>
   <description> Demo</description>
-  <priority_id>4</priority_id>
+  <priority_id>Pri_Setting</priority_id>
 </issue>
