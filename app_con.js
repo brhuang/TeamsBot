@@ -24,6 +24,7 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 // Bots Dialogs
 //=========================================================
+var Output; 
 var bot = new builder.UniversalBot(connector, [
     function (session) {
         builder.Prompts.choice(session, "Hello... Any problem?", ["Submit issue", "Just say hello"]);
@@ -97,7 +98,7 @@ var bot = new builder.UniversalBot(connector, [
         ExecCmd(sedcmd, session);
         
         var submitcmd = 'curl -v -H "Content-Type: application/xml" -X POST --data-binary "@/app/tmp/issues.xml" -u "eitc:secret"  https://b72c4b06.ngrok.io/issues.xml?key=678fb5bd075ebee0a4636b74857cb6b0ece71cf3';
-        ExecCmd(submitcmd, session);
+        Output = ExecCmd(submitcmd, session);
         /*exec(cmd, function(error, stdout, stderr) {
             session.send("cmd = " + cmd);
             session.send("Got it... " + session.userData.issues );
@@ -106,8 +107,11 @@ var bot = new builder.UniversalBot(connector, [
             console.log("stdout : " + stdout);
             console.log("stderr : " + stderr);
         }); */
+        session.send("Redmine output = " + Output);
     }
 ]);
+
+
 
 function ExecCmd(cmd, session) {
     exec(cmd, function(error, stdout, stderr) {
@@ -117,6 +121,7 @@ function ExecCmd(cmd, session) {
         console.log("error : " + error);
         console.log("stdout : " + stdout);
         console.log("stderr : " + stderr);
+        return stdout;
     });
 }
 
