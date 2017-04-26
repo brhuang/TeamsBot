@@ -116,6 +116,7 @@ var bot = new builder.UniversalBot(connector, [
 function ExecCmd(cmd, session) {
     exec(cmd, function(error, stdout, stderr) {
         session.send("cmd = " + cmd);
+        session.send("stdout = " + stdout);
         //session.send("Got it... " + session.userData.issues );
         // command output is in stdout
         console.log("error : " + error);
