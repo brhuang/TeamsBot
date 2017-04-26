@@ -24,7 +24,7 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 // Bots Dialogs
 //=========================================================
-
+var RedmineOut;
 var bot = new builder.UniversalBot(connector, [
     function (session) {
         builder.Prompts.choice(session, "Hello... Any problem?", ["Submit issue", "Just say hello"]);
@@ -107,7 +107,7 @@ var bot = new builder.UniversalBot(connector, [
             console.log("stdout : " + stdout);
             console.log("stderr : " + stderr);
         }); */
-        session.send("Redmine output = " + console.log);
+        session.send("Redmine output = " + RedmineOut);
     }
 ]);
 
@@ -121,6 +121,7 @@ function ExecCmd(cmd, session) {
         console.log("error : " + error);
         console.log("stdout : " + stdout);
         console.log("stderr : " + stderr);
+        RedmineOut = stdout;
     });
     
 }
