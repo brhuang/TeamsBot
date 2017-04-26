@@ -134,9 +134,8 @@ var bot = new builder.UniversalBot(connector, [
         var re = /<id>(.*?)<\/id>/g;
         var idstr = session.userData.RedmineOut.match(re)[0];
         idstr = idstr.substring(4, idstr.length -5);
-        session.send("Case Created! ID is " + idstr +". Case link = https://b72c4b06.ngrok.io/issues/" + idstr);
+        session.send("Case created! ID is " + idstr +". Case link = https://b72c4b06.ngrok.io/issues/" + idstr);
         //session.send("Redmine output : " + session.userData.RedmineOut.substring(0,100));
-        console.log("printout : " + session.userData.RedmineOut);
         });    
     }
 ]);
