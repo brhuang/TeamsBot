@@ -108,7 +108,7 @@ var bot = new builder.UniversalBot(connector, [
         sedcmd = 'sed -i "s/Pri_Setting/' + session.userData.priority + '/g" /app/tmp/issues.xml';
         session.send("sedcmd = " + sedcmd);
         ExecCmd(sedcmd, session);
-        var RedmineOut = null;
+ 
         var submitcmd = 'curl -v -H "Content-Type: application/xml" -X POST --data-binary "@/app/tmp/issues.xml" -u "eitc:secret"  https://b72c4b06.ngrok.io/issues.xml?key=678fb5bd075ebee0a4636b74857cb6b0ece71cf3';
         //ExecCmd(submitcmd, session);
         exec(submitcmd, function(error, stdout, stderr) {
@@ -118,9 +118,9 @@ var bot = new builder.UniversalBot(connector, [
             console.log("error : " + error);
             console.log("stdout : " + stdout);
             console.log("stderr : " + stderr);
-            RedmineOut = stdout;
+            session.userData.RedmineOut = stdout;
         });
-        session.send("Redmine output : " + RedmineOut);
+        session.send("Redmine output : " + session.userData.RedmineOut);
     }
 ]);
 
