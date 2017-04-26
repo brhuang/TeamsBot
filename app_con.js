@@ -24,7 +24,7 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 // Bots Dialogs
 //=========================================================
-var RedmineOut;
+
 var bot = new builder.UniversalBot(connector, [
     function (session) {
         builder.Prompts.choice(session, "Hello... Any problem?", ["Submit issue", "Just say hello"]);
@@ -116,13 +116,13 @@ var bot = new builder.UniversalBot(connector, [
 function ExecCmd(cmd, session) {
     exec(cmd, function(error, stdout, stderr) {
         session.send("cmd = " + cmd);
-        session.send("stdout = " + stdout);
+        var RedmineOut = stdout;
+        session.send("stdout = " + RedmineOut);
         //session.send("Got it... " + session.userData.issues );
         // command output is in stdout
         console.log("error : " + error);
         console.log("stdout : " + stdout);
         console.log("stderr : " + stderr);
-        RedmineOut = stdout;
     });
     
 }
