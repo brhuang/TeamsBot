@@ -120,7 +120,18 @@ var bot = new builder.UniversalBot(connector, [
             console.log("stderr : " + stderr);
             session.userData.RedmineOut = stdout;
         });
+        function sleep (time) {
+          return new Promise((resolve) => setTimeout(resolve, time));
+        }
+
+
+        // Usage!
+
+        sleep(1000).then(() => {
+
+    // Do something after the sleep!
         session.send("Redmine output : " + session.userData.RedmineOut);
+        });    
     }
 ]);
 
