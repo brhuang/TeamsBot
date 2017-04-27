@@ -111,7 +111,7 @@ var bot = new builder.UniversalBot(connector, [
         ExecCmd(sedcmd, session);
  
         var submitcmd = 'curl -v -H "Content-Type: application/xml" -X POST --data-binary "@/app/tmp/issues.xml" -u "eitc:secret"  https://b72c4b06.ngrok.io/issues.xml?key=678fb5bd075ebee0a4636b74857cb6b0ece71cf3';
-        ExecCmd(submitcmd, session);
+        //ExecCmd(submitcmd, session);
         /*exec(submitcmd, function(error, stdout, stderr) {
             //session.send("cmd = " + cmd);
             //session.send("Got it... " + session.userData.issues );
@@ -134,8 +134,7 @@ var bot = new builder.UniversalBot(connector, [
         var re = /<id>(.*?)<\/id>/g;
         var idstr = session.userData.RedmineOut.match(re)[0];
         idstr = idstr.substring(4, idstr.length -5);
-        session.send("Case created! ID is " + idstr +". Case link = https://b72c4b06.ngrok.io/issues/" + idstr);
-        //session.send("Redmine output : " + session.userData.RedmineOut.substring(0,100));
+        //session.send("Case created! ID is " + idstr +". Case link = https://b72c4b06.ngrok.io/issues/" + idstr);
         });    
     }
 ]);
